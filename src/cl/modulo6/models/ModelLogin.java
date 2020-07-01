@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
+import cl.modulo6.objetos.Cliente;
 import cl.modulo6.objetos.ReporteCliente;
 import cl.modulo6.objetos.Usuario;
 
@@ -118,6 +119,44 @@ public class ModelLogin {
 		
 		
 		return repcliente;
+	}
+
+	public static List<Cliente> getListaClientes() {
+		
+		List<Cliente> listaClientes= new ArrayList<>();
+		
+		Statement stmListClient=null;
+		ResultSet rSetListClient=null;
+		
+		String consultaSql="SELECT c.nombre_emp,c.rut_emp,c.direccion_emp,c.telefono_emp,c.giro_emp,c.email_emp,u.usuario,u.pass "+
+							"FROM cliente c,usuario u WHERE c.usuario_usuario=u.usuario";
+		
+		try {
+			
+			stmListClient=conex.createStatement();
+			rSetListClient=stmListClient.executeQuery(consultaSql);
+			
+			while(rSetListClient.next()) {
+				String nombre=rSetListClient.getString("NOMBRE_EMP");
+				String rut=rSetListClient.getString("RUT_EMP");
+				String direccion=rSetListClient.getString("DIRECCION_EMP");
+				String telefono=rSetListClient.getString("TELEFONO_EMP");
+				String giro=rSetListClient.getString("GIRO_EMP");
+				String correo=rSetListClient.getString("EMAIL_EMP");
+				String usuario=rSetListClient.getString("USUARIO");
+				String clave=rSetListClient.getString("PASS");
+				
+				Cliente tempListClient=new Cliente(nombre,rut,direccion,telefono,giro,correo,usuario,clave);
+				
+				listaClientes.add(tempListClient);
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		
+		return listaClientes;
 	}
 	
 	

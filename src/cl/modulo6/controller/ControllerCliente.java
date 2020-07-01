@@ -84,8 +84,6 @@ public class ControllerCliente extends HttpServlet {
 		}
 		
 		
-		
-		
 	}
 	
 	 private void listarReportes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

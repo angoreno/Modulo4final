@@ -15,7 +15,7 @@ public class CookieCliente {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static void creaCookie(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
+	public static String creaCookie(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
 		
 		String usuario=request.getParameter("usuario");
 		
@@ -24,6 +24,7 @@ public class CookieCliente {
 		loginCookie.setMaxAge(60*5);
 		
 		response.addCookie(loginCookie);
+		return null;
 	}
 
 }

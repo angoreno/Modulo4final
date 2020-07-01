@@ -29,4 +29,14 @@
     <servlet-name>ControllerCliente</servlet-name>
     <url-pattern>/ControllerCliente</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Mantencioncliente</display-name>
+    <servlet-name>Mantencioncliente</servlet-name>
+    <servlet-class>cl.modulo6.controller.Mantencioncliente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Mantencioncliente</servlet-name>
+    <url-pattern>/Mantencioncliente</url-pattern>
+  </servlet-mapping>
 </web-app>

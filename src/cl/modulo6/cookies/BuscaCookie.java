@@ -21,7 +21,8 @@ public class BuscaCookie {
 		}
 		
 		System.out.println(contCookie);
-		return contCookie;
+		//return contCookie;
+		return null;
 	}
 
 	

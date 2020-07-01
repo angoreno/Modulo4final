@@ -12,7 +12,10 @@
 	
 	<p>opciones a realizar con la cuenta</p>
 	
-	<button>Opcion 1</button><br>
+	<form action="Mantencioncliente" method="get">
+		<button >Mantenedor Cliente</button><br>
+	</form>
+	
 	<button>Opcion 2</button><br>
 	<button>Opcion 3</button><br>
 	<button>Opcion 4</button><br>
