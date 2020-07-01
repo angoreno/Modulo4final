@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Modulo6Final</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>controllerLogin</display-name>
+    <servlet-name>controllerLogin</servlet-name>
+    <servlet-class>cl.modulo6.controller.controllerLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controllerLogin</servlet-name>
+    <url-pattern>/controllerLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ControllerCliente</display-name>
+    <servlet-name>ControllerCliente</servlet-name>
+    <servlet-class>cl.modulo6.controller.ControllerCliente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerCliente</servlet-name>
+    <url-pattern>/ControllerCliente</url-pattern>
+  </servlet-mapping>
+</web-app>
