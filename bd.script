@@ -1,0 +1,162 @@
+CREATE TABLE asesoria (
+    id                   INTEGER NOT NULL,
+    asesoria             VARCHAR2(100 CHAR) NOT NULL,
+    motivo               VARCHAR2(300 CHAR) NOT NULL,
+    profesional_usuario  VARCHAR2(20 CHAR) NOT NULL,
+    cliente_usuario      VARCHAR2(100 CHAR) NOT NULL
+)
+LOGGING;
+
+ALTER TABLE asesoria ADD CONSTRAINT asesoria_pk PRIMARY KEY ( id );
+
+CREATE TABLE cargo (
+    id           INTEGER NOT NULL,
+    "nombre"     VARCHAR2(100 CHAR) NOT NULL,
+    descripcion  VARCHAR2(200 CHAR) NOT NULL
+)
+LOGGING;
+
+ALTER TABLE cargo ADD CONSTRAINT cargo_pk PRIMARY KEY ( id );
+
+CREATE TABLE checklist (
+    id                   INTEGER NOT NULL,
+    nombre               VARCHAR2(100 CHAR) NOT NULL,
+    descripcion          VARCHAR2(200 CHAR) NOT NULL,
+    profesional_usuario  VARCHAR2(20 CHAR) NOT NULL,
+    cliente_usuario      VARCHAR2(100 CHAR) NOT NULL
+)
+LOGGING;
+
+ALTER TABLE checklist ADD CONSTRAINT checklist_pk PRIMARY KEY ( id );
+
+CREATE TABLE cliente (
+    id_emp           VARCHAR2(100 CHAR) NOT NULL,
+    nombre_emp       VARCHAR2(100 CHAR) NOT NULL,
+    rut_emp          VARCHAR2(12 CHAR) NOT NULL,
+    cargo_id         INTEGER NOT NULL,
+    direccion_emp    VARCHAR2(150 CHAR) NOT NULL,
+    telefono_emp     VARCHAR2(15 CHAR) NOT NULL,
+    giro_emp         VARCHAR2(100 CHAR) NOT NULL,
+    email_emp        VARCHAR2(150 CHAR) NOT NULL,
+    usuario_usuario  VARCHAR2(50 CHAR) NOT NULL
+)
+LOGGING;
+
+ALTER TABLE cliente ADD CONSTRAINT id_emp_pk PRIMARY KEY ( id_emp );
+
+CREATE TABLE detchecklist (
+    id            INTEGER NOT NULL,
+    "check"       VARCHAR2(100 CHAR) NOT NULL,
+    descripcion   VARCHAR2(200 CHAR) NOT NULL,
+    checklist_id  INTEGER NOT NULL
+)
+LOGGING;
+
+ALTER TABLE detchecklist ADD CONSTRAINT detchecklist_pk PRIMARY KEY ( id );
+
+CREATE TABLE mejora (
+    id                   INTEGER NOT NULL,
+    mejora               VARCHAR2(100 CHAR) NOT NULL,
+    descripcion          VARCHAR2(200 CHAR) NOT NULL,
+    profesional_usuario  VARCHAR2(20 CHAR) NOT NULL,
+    cliente_usuario      VARCHAR2(100 CHAR) NOT NULL
+)
+LOGGING;
+
+ALTER TABLE mejora ADD CONSTRAINT mejora_pk PRIMARY KEY ( id );
+
+CREATE TABLE profesional (
+    id_prof           VARCHAR2(20 CHAR) NOT NULL,
+    nombre_prof       VARCHAR2(150 CHAR) NOT NULL,
+    descripcion_prof  VARCHAR2(200 CHAR) NOT NULL,
+    telefono_prof     VARCHAR2(12 CHAR) NOT NULL,
+    direccion_prof    VARCHAR2(150 CHAR) NOT NULL,
+    correo_prof       VARCHAR2(100 CHAR) NOT NULL,
+    cargo_id          INTEGER NOT NULL,
+    usuario_usuario   VARCHAR2(50 CHAR) NOT NULL
+)
+LOGGING;
+
+ALTER TABLE profesional ADD CONSTRAINT id_prof_pk PRIMARY KEY ( id_prof );
+
+CREATE TABLE repaccidentes (
+    id               INTEGER NOT NULL,
+    accidente        VARCHAR2(100 CHAR) NOT NULL,
+    trabajador       VARCHAR2(100 CHAR) NOT NULL,
+    fecha            DATE NOT NULL,
+    detalle          CLOB NOT NULL,
+    cliente_usuario  VARCHAR2(100 CHAR) NOT NULL
+)
+LOGGING;
+
+ALTER TABLE repaccidentes ADD CONSTRAINT repaccidentes_pk PRIMARY KEY ( id );
+
+CREATE TABLE solasesoria (
+    id               INTEGER NOT NULL,
+    motivo           VARCHAR2(150 CHAR) NOT NULL,
+    fecha            VARCHAR2(10 CHAR) NOT NULL,
+    detalle          VARCHAR2(300 CHAR) NOT NULL,
+    cliente_usuario  VARCHAR2(100 CHAR) NOT NULL
+)
+LOGGING;
+
+ALTER TABLE solasesoria ADD CONSTRAINT solasesoria_pk PRIMARY KEY ( id );
+
+CREATE TABLE usuario (
+    usuario   VARCHAR2(50 CHAR) NOT NULL,
+    pass      VARCHAR2(50 CHAR) NOT NULL,
+    cargo_id  INTEGER NOT NULL
+)
+LOGGING;
+
+ALTER TABLE usuario ADD CONSTRAINT usuario_pk PRIMARY KEY ( usuario );
+
+ALTER TABLE asesoria
+    ADD CONSTRAINT asesoria_cliente_fk FOREIGN KEY ( cliente_usuario )
+        REFERENCES cliente ( id_emp )
+    NOT DEFERRABLE;
+
+ALTER TABLE asesoria
+    ADD CONSTRAINT asesoria_profesional_fk FOREIGN KEY ( profesional_usuario )
+        REFERENCES profesional ( id_prof )
+    NOT DEFERRABLE;
+
+ALTER TABLE checklist
+    ADD CONSTRAINT checklist_profesional_fk FOREIGN KEY ( profesional_usuario )
+        REFERENCES profesional ( id_prof )
+    NOT DEFERRABLE;
+
+ALTER TABLE cliente
+    ADD CONSTRAINT cliente_usuario_fk FOREIGN KEY ( usuario_usuario )
+        REFERENCES usuario ( usuario )
+    NOT DEFERRABLE;
+
+ALTER TABLE detchecklist
+    ADD CONSTRAINT detchecklist_checklist_fk FOREIGN KEY ( checklist_id )
+        REFERENCES checklist ( id )
+    NOT DEFERRABLE;
+
+ALTER TABLE mejora
+    ADD CONSTRAINT mejora_profesional_fk FOREIGN KEY ( profesional_usuario )
+        REFERENCES profesional ( id_prof )
+    NOT DEFERRABLE;
+
+ALTER TABLE profesional
+    ADD CONSTRAINT profesional_usuario_fk FOREIGN KEY ( usuario_usuario )
+        REFERENCES usuario ( usuario )
+    NOT DEFERRABLE;
+
+ALTER TABLE repaccidentes
+    ADD CONSTRAINT repaccidentes_cliente_fk FOREIGN KEY ( cliente_usuario )
+        REFERENCES cliente ( id_emp )
+    NOT DEFERRABLE;
+
+ALTER TABLE solasesoria
+    ADD CONSTRAINT solasesoria_cliente_fk FOREIGN KEY ( cliente_usuario )
+        REFERENCES cliente ( id_emp )
+    NOT DEFERRABLE;
+
+ALTER TABLE usuario
+    ADD CONSTRAINT usuario_cargo_fk FOREIGN KEY ( cargo_id )
+        REFERENCES cargo ( id )
+    NOT DEFERRABLE;

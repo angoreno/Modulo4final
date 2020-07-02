@@ -60,7 +60,33 @@ public class Mantencioncliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		modificaCliente(request,response);
 		
+		
+	}
+
+	private void modificaCliente(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+		String nombre=request.getParameter("nombre");
+		String rut=request.getParameter("rut");
+		String direccion=request.getParameter("direccion");
+		String telefono=request.getParameter("telefono");
+		String giro=request.getParameter("giro");
+		String correo=request.getParameter("correo");
+		String usuario=request.getParameter("usuario");
+		String clave=request.getParameter("pass");
+		int cargo=3;
+		
+		
+		try {
+			
+			String creaCliente=ModelLogin.creaCliente(nombre,rut,direccion,telefono,giro,correo,usuario,clave,cargo);
+			System.out.println(creaCliente);
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 		
 	}
 

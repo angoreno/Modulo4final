@@ -161,4 +161,59 @@ public class ModelLogin {
 	
 	
 
+	public static String creaCliente(String nombre, String rut, String direccion, String telefono, String giro,
+			String correo, String usuario, String clave,int cargo) {
+		// TODO Auto-generated method stub
+		
+		String nombreDB=nombre;
+		String rutDB=rut;
+		String direccionDB=direccion;
+		String telefonoDB=telefono;
+		String giroDB=giro;
+		String correoDB=correo;
+		String usuarioDB=usuario;
+		String claveDB=clave;
+		int cargoDB=cargo;
+		
+		try {
+			
+			Statement stmCreaCliente=null;
+			ResultSet rSetCreaCliente=null;
+			
+			String consultaSql="INSERT INTO USUARIO (USUARIO, PASS, CARGO_ID) "+
+					"VALUES ('"+usuarioDB+"','"+claveDB+"','"+cargoDB+"')";
+			
+			stmCreaCliente=conex.createStatement();
+			stmCreaCliente.executeQuery(consultaSql);
+			
+			/*******************************************************************************/
+			
+			Statement stmCreaCliente2=null;
+			ResultSet rSetCreaCliente2=null;
+			
+			String consultaSql2="INSERT INTO CLIENTE (NOMBRE_EMP, RUT_EMP, DIRECCION_EMP,TELEFONO_EMP,GIRO_EMP,EMAIL_EMP,USUARIO_USUARIO) "+
+					"VALUES ('"+nombreDB+"','"+rutDB+"','"+direccionDB+"','"+telefonoDB+"','"+giroDB+"','"+correoDB+"','"+usuarioDB+"')";
+			
+			stmCreaCliente2=conex.createStatement();
+			stmCreaCliente2.executeQuery(consultaSql2);
+			
+			String respuesta="Cliente creado exitosamente";
+			
+			return respuesta;
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		
+			return "error en el ingreso del Servidor ";
+		}
+		
+				
+	}
+	
+	
+
+	
+	
+	
+
 }

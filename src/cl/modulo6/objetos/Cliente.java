@@ -5,11 +5,27 @@ public class Cliente {
 	private String nombre;
 	private String rut;
 	private String direccion;
-	private String Telefono;
+	private String telefono;
 	private String giro;
 	private String correo;
 	private String usuario;
 	private String clave;
+	private int cargo;
+	
+	
+	public Cliente(String nombre, String rut, String direccion, String telefono, String giro, String correo,
+			String usuario, String clave, int cargo) {
+		super();
+		this.nombre = nombre;
+		this.rut = rut;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.giro = giro;
+		this.correo = correo;
+		this.usuario = usuario;
+		this.clave = clave;
+		this.cargo = cargo;
+	}
 	
 	
 	public Cliente(String nombre, String rut, String direccion, String telefono, String giro, String correo,
@@ -18,12 +34,14 @@ public class Cliente {
 		this.nombre = nombre;
 		this.rut = rut;
 		this.direccion = direccion;
-		Telefono = telefono;
+		this.telefono = telefono;
 		this.giro = giro;
 		this.correo = correo;
 		this.usuario = usuario;
 		this.clave = clave;
 	}
+
+
 
 
 	public String getNombre() {
@@ -57,12 +75,12 @@ public class Cliente {
 
 
 	public String getTelefono() {
-		return Telefono;
+		return telefono;
 	}
 
 
 	public void setTelefono(String telefono) {
-		Telefono = telefono;
+		this.telefono = telefono;
 	}
 
 
@@ -106,15 +124,22 @@ public class Cliente {
 	}
 
 
+	public int getCargo() {
+		return cargo;
+	}
+
+
+	public void setCargo(int cargo) {
+		this.cargo = cargo;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Cliente [nombre=" + nombre + ", rut=" + rut + ", direccion=" + direccion + ", Telefono=" + Telefono
-				+ ", giro=" + giro + ", correo=" + correo + ", usuario=" + usuario + ", clave=" + clave
-				+ ", toString()=" + super.toString() + "]";
+		return "Cliente [nombre=" + nombre + ", rut=" + rut + ", direccion=" + direccion + ", telefono=" + telefono
+				+ ", giro=" + giro + ", correo=" + correo + ", usuario=" + usuario + ", clave=" + clave + ", cargo="
+				+ cargo + ", toString()=" + super.toString() + "]";
 	}
-	
-	
-	
 	
 	
 
